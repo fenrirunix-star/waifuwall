@@ -1,0 +1,108 @@
+{
+  "entities": {
+    "Wallpaper": {
+      "title": "Wallpaper",
+      "description": "Represents a high-quality anime wallpaper",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "imageUrl": { "type": "string", "format": "uri" },
+        "thumbnailUrl": { "type": "string", "format": "uri" },
+        "category": { "type": "string" },
+        "subCategory": { "type": "string" },
+        "resolution": { "type": "string" },
+        "views": { "type": "number" },
+        "downloads": { "type": "number" },
+        "likes": { "type": "number" },
+        "isPremium": { "type": "boolean" },
+        "is4k": { "type": "boolean" },
+        "is3d": { "type": "boolean" },
+        "hashtags": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "authorId": { "type": "string" },
+        "origin": { "type": "string", "enum": ["Standard", "Enterprise"] }
+      },
+      "required": ["title", "imageUrl", "category", "resolution"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Wallpaper category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "imageUrl": { "type": "string", "format": "uri" },
+        "icon": { "type": "string" },
+        "wallpaperCount": { "type": "number" }
+      }
+    },
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Extended user information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "photoURL": { "type": "string", "format": "uri" },
+        "isPremium": { "type": "boolean" },
+        "favorites": { "type": "array", "items": { "type": "string" } },
+        "premiumUntil": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/wallpapers/{wallpaperId}": {
+      "schema": "Wallpaper",
+      "description": "Primary storage for wallpapers"
+    },
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Wallpaper categories"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles and settings"
+    },
+    "/settings/{settingId}": {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "gaId": { "type": "string" },
+          "adsenseId": { "type": "string" },
+          "metaKeywords": { "type": "string" },
+          "metaDescription": { "type": "string" },
+          "siteName": { "type": "string" },
+          "siteDescription": { "type": "string" },
+          "contactEmail": { "type": "string" },
+          "updatedAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "description": "Global application settings"
+    },
+    "/contact_messages/{messageId}": {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "email": { "type": "string" },
+          "message": { "type": "string" },
+          "status": { "type": "string", "enum": ["new", "read"] },
+          "createdAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "description": "Contact form submissions"
+    },
+    "/newsletter/{subId}": {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string" },
+          "subscribedAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "description": "Newsletter subscribers"
+    }
+  }
+}

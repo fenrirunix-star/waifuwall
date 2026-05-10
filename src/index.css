@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Space Grotesk", sans-serif;
+  
+  --color-sakura-50: #fff1f2;
+  --color-sakura-100: #FCE7F3;
+  --color-sakura-200: #FBCFE8;
+  --color-sakura-300: #F9A8D4;
+  --color-lavender-50: #fdf4ff;
+  --color-lavender-100: #EDE9FE;
+  --color-lavender-200: #DDD6FE;
+  
+  --color-main-text: #4a3a4a;
+}
+
+@layer base {
+  body {
+    @apply bg-sakura-50 text-main-text overflow-x-hidden antialiased;
+    background: radial-gradient(circle at top left, #fff1f2, #fdf4ff, #fff1f2);
+    background-attachment: fixed;
+  }
+}
+
+.glass {
+  @apply backdrop-blur-md bg-white/60 border border-white/40 shadow-xl;
+}
+
+.glass-dark {
+  @apply backdrop-blur-md bg-black/10 border border-white/10 shadow-xl;
+}
+
+.card-hover {
+  @apply transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-pink-200/50;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-sakura-200 rounded-full hover:bg-sakura-300 transition-colors cursor-pointer;
+}

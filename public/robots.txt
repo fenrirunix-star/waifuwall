@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://waifuwall-psi.vercel.app/sitemap.xml
